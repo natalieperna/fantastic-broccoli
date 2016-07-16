@@ -56,3 +56,18 @@ $response = $kernel->handle(
 $response->send();
 
 $kernel->terminate($request, $response);
+
+if(DB::connection()->getDatabaseName())
+{
+	echo "Connected successfully to database ".DB::connection()->getDatabaseName().".";
+	$users = DB::connection()->table('Users')->get();
+
+	foreach($users as $user)
+	{
+		var_dump($user->firstName);
+	}
+}
+else
+{
+	echo "Failed to connect to database.";
+}
