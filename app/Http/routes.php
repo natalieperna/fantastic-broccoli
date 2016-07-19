@@ -15,7 +15,13 @@ use Illuminate\Http\Request;
 use App\ShoppingList;
 
 Route::get('/', function () {
-    return view('welcome');
+    $lists = ShoppingList::where('user_id', Auth::id())
+        ->orderBy('created_at', 'asc')
+        ->get();
+
+    return view('welcome', [
+        'lists' => $lists
+    ]);
 });
 
 Route::auth();

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome</div>
+                <div class="panel-heading">New List</div>
 
                 <div class="panel-body">
                     <!-- Display Validation Errors -->
@@ -35,6 +35,42 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Current Lists -->
+            @if (count($lists) > 0)
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Current Lists
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table table-striped list-table">
+
+                            <!-- Table Headings -->
+                            <thead>
+                            <th>Lists</th>
+                            <th>&nbsp;</th>
+                            </thead>
+
+                            <!-- Table Body -->
+                            <tbody>
+                            @foreach ($lists as $list)
+                                <tr>
+                                    <!-- List Name -->
+                                    <td class="table-text">
+                                        <div>{{ $list->name }}</div>
+                                    </td>
+
+                                    <td>
+                                        <!-- TODO: Delete Button -->
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>
