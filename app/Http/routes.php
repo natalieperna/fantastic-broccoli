@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Http\Request;
+use App\ShoppingList;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +21,25 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+/**
+ * Add a new list
+ */
+Route::post('/list', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|max:255',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/')
+            ->withInput()
+            ->withErrors($validator);
+    }
+
+    $list = new ShoppingList;
+    $list->user_id = Auth::id();
+    $list->name = $request->name;
+    $list->save();
+
+    return redirect('/');
+});
