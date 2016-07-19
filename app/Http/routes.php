@@ -49,3 +49,12 @@ Route::post('/list', function (Request $request) {
 
     return redirect('/');
 });
+
+/**
+ * Delete a list
+ */
+Route::delete('/list/{id}', function ($id) {
+    ShoppingList::findOrFail($id)->delete();
+
+    return redirect('/');
+});
