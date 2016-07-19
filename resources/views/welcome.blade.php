@@ -4,6 +4,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+
+            @if (Auth::guest())
+                <div class="panel panel-default">
+                    <div class="panel-heading">Welcome</div>
+
+                    <div class="panel-body">
+                        <p>Have you tried the fantastic broccoli?</p>
+                    </div>
+                </div>
+            @else
             <div class="panel panel-default">
                 <div class="panel-heading">New List</div>
 
@@ -78,6 +88,7 @@
                         </table>
                     </div>
                 </div>
+            @endif
             @endif
         </div>
     </div>
