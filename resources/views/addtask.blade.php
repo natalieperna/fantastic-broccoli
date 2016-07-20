@@ -21,7 +21,7 @@
                     <!-- Display Validation Errors -->
                     @include('errors.common')
 
-                    <!-- New List Form -->
+                    <!-- New Item Form -->
                     <form action="/list" method="POST" class="form-horizontal">
                     {{ csrf_field() }}
 
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
                                 <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-plus"></i> Create List
+                                    <i class="fa fa-plus"></i> Create Item
                                 </button>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                             <button type="submit" class="btn btn-default">
                                                 <i class="fa fa-btn"></i>{{ $list->name }}
                                             </button> -->
-                                        <a class="btn btn-link" href="{{ url('addtask') }}">{{ $list->name }}</a>
+                                        <a class="btn btn-link" href="{{ url('/password/reset') }}">{{ $list->name }}</a>
                                         </form>
                                     </td>
 
