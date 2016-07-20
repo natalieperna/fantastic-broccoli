@@ -75,6 +75,7 @@
                                             <button type="submit" class="btn btn-default">
                                                 <i class="fa fa-btn"></i>{{ $list->name }}
                                             </button> -->
+                                            
                                         <a class="btn btn-link" href="{{ url('addtask') }}">{{ $list->name }}</a>
                                         </form>
                                     </td>

@@ -58,3 +58,11 @@ Route::delete('/list/{id}', function ($id) {
 
     return redirect('/');
 });
+
+/**
+*
+* Add an item
+*/
+Route::get('addtask', array('as'=>'addtask', function() {
+    return View::make('addtask');
+}));
