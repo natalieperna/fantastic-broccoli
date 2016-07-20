@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Http\Request;
+use App\User;
 use App\ShoppingList;
 
 Route::get('/', function () {
@@ -57,6 +58,23 @@ Route::delete('/list/{id}', function ($id) {
     ShoppingList::findOrFail($id)->delete();
 
     return redirect('/');
+});
+
+/**
+ * Share a list
+ */
+Route::post('/invite', function (Request $request) {
+    $email = $request->email;
+    $matches = User::where('email', $email)->get();
+
+    if(count($matches) > 0) {
+        return Redirect::back()
+            ->withErrors("TODO not yet implemented");
+    }
+    else {
+        return Redirect::back()
+            ->withErrors("Could not find user with email address $email.");
+    }
 });
 
 /**

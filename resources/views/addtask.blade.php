@@ -4,12 +4,38 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            @include('errors.common')
+
+            <!-- Share List -->
+            <div class="panel panel-default">
+                <div class="panel-heading">Invite</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/invite') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-btn fa-share"></i> Invite
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <div class="panel panel-default">
                 <div class="panel-heading">Add an Item</div>
 
                 <div class="panel-body">
-                    @include('errors.common')
-
                     <!-- New Item Form -->
                     <form action="/list" method="POST" class="form-horizontal">
                     {{ csrf_field() }}
@@ -34,9 +60,6 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-
                 </div>
             </div>
         </div>
