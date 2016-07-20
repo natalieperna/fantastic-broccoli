@@ -13,6 +13,7 @@
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Contributor;
 use App\ShoppingList;
 
 Route::get('/', function () {
@@ -68,8 +69,20 @@ Route::post('/invite', function (Request $request) {
     $matches = User::where('email', $email)->get();
 
     if(count($matches) > 0) {
-        return Redirect::back()
-            ->withErrors("TODO not yet implemented");
+        $user_id = $matches[0]->id;
+
+        // TODO Verify that this isn't the owner's ID, and that they aren't already a contributor.
+
+        $contributor = new Contributor;
+        $contributor->user_id = $user_id;
+        $contributor->list_id = $request->list_id;
+        $contributor->save();
+
+        // TODO Email contributor to accept invite.
+
+        // TODO Show a success message
+        
+        return Redirect::back();
     }
     else {
         return Redirect::back()
@@ -79,8 +92,12 @@ Route::post('/invite', function (Request $request) {
 
 /**
 *
-* Add an item
+* View a list
 */
-Route::get('addtask', array('as'=>'addtask', function() {
-    return View::make('addtask');
-}));
+Route::get('/list/{id}', function ($id) {
+    $list = ShoppingList::findOrFail($id);
+
+    return view('list', [
+        'list' => $list
+    ]);
+});

@@ -68,16 +68,7 @@
                                 <tr>
                                     <!-- List Name -->
                                     <td class="table-text">
-
-                                        <form action="/list/{{ $list->id }}" method="POST">
-                                            {{ csrf_field() }}
-<!-- 
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fa fa-btn"></i>{{ $list->name }}
-                                            </button> -->
-                                            
-                                        <a class="btn btn-link" href="{{ url('addtask') }}">{{ $list->name }}</a>
-                                        </form>
+                                        <a class="btn btn-link" href="{{ url('list') }}/{{ $list->id }}">{{ $list->name }}</a>
                                     </td>
 
                                     <!-- Delete Button -->

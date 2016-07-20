@@ -13,6 +13,9 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/invite') }}">
                         {{ csrf_field() }}
 
+                        {{-- TODO This can't be the right way to pass the list ID --}}
+                        <input name="list_id" type="hidden" value="{{ $list->id }}">
+
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
