@@ -23,3 +23,16 @@ php artisan migrate
 chmod 777 -R storage
 chmod 777 -R bootstrap/cache
 ```
+
+## Deploy
+```
+eb init -p PHP
+eb platform select
+```
+
+Select PHP 5.6
+
+```
+eb create fantastic-broccoli
+eb open
+```
