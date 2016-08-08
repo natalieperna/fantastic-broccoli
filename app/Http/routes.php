@@ -101,3 +101,33 @@ Route::get('/list/{id}', function ($id) {
         'list' => $list
     ]);
 });
+
+/**
+ * API Routes
+ */
+/* Get token */
+// TODO More secure way to fetch token (OAuth2?)
+Route::group(['prefix' => 'api'], function () {
+    Route::post('/login', function (Request $request) {
+        $credentials = $request->only(['email', 'password']);
+
+        // TODO Validate request
+
+        if (!Auth::attempt($credentials)) {
+            return; // TODO Handle failed login
+        }
+
+        return response()->json([
+            'token' => Auth::user()->api_token
+        ]);
+    });
+});
+
+/* Requires token in params */
+Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
+    Route::get(('/name'), function () {
+        return response()->json([
+            'name' => Auth::guard('api')->user()->name
+        ]);
+    });
+});
